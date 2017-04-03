@@ -142,6 +142,7 @@ check_valgrind_log "morphological analysis"
 if test -f $TESTDIR/$NAME.sug; then
     hunspell $* -a -d $TESTDIR/$NAME <$TESTDIR/$NAME.wrong | grep -a '^&' | \
         sed 's/^[^:]*: //' >$TEMPDIR/$NAME.sug 
+    dos2unix $TEMPDIR/$NAME.sug
     if ! cmp $TEMPDIR/$NAME.sug $TESTDIR/$NAME.sug >/dev/null; then
         echo "============================================="
         echo "Fail in $NAME.sug. Bad suggestion?"
