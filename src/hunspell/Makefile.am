@@ -1,3 +1,7 @@
+VENDOR ?=community
+BUILD_INFO=\#\#1\#\# $(shell date +'%d %b %Y %H:%M:%S')     $(shell uname -n)
+BUILDLEVEL_INFO=@\#$(VENDOR):$(VERSION)\#@$(BUILD_INFO)::::0::
+
 lib_LTLIBRARIES = libhunspell-1.6.la
 libhunspell_1_6_includedir = $(includedir)/hunspell
 libhunspell_1_6_la_SOURCES=affentry.cxx affixmgr.cxx csutil.cxx \
@@ -12,7 +16,8 @@ libhunspell_1_6_include_HEADERS=hunspell.hxx hunspell.h hunvisapi.h \
 		                w_char.hxx atypes.hxx csutil.hxx htypes.hxx
 
 libhunspell_1_6_la_DEPENDENCIES=utf_info.cxx
-libhunspell_1_6_la_LDFLAGS=-no-undefined -version-info 0:1:0
+libhunspell_1_6_la_LDFLAGS=-no-undefined -version-info 0:1:0 \
+                     -buildlevel '$(BUILDLEVEL_INFO)'
 
 AM_CXXFLAGS=$(CFLAG_VISIBILITY) -DBUILDING_LIBHUNSPELL
 
