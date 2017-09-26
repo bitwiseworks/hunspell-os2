@@ -115,6 +115,31 @@
 #include "xmlparser.hxx"
 #include "odfparser.hxx"
 
+#ifdef __OS2__
+#define LIBDIR                \
+  "/@unixroot/usr/share/hunspell;"     \
+  "/@unixroot/usr/share/myspell;"      \
+  "/@unixroot/usr/share/myspell/dicts"
+#define USEROOODIR {                  \
+  ".openoffice.org/3/user/wordbook", \
+  ".openoffice.org2/user/wordbook",  \
+  ".openoffice.org2.0/user/wordbook" }
+#define OOODIR                                       \
+  "/@unixroot/usr/lib/openoffice.org/basis3.0/share/dict/ooo;" \
+  "/@unixroot/usr/lib/openoffice.org2.4/share/dict/ooo;"       \
+  "/@unixroot/usr/lib/openoffice.org2.3/share/dict/ooo;"       \
+  "/@unixroot/usr/lib/openoffice.org2.2/share/dict/ooo;"       \
+  "/@unixroot/usr/lib/openoffice.org2.1/share/dict/ooo;"       \
+  "/@unixroot/usr/lib/openoffice.org2.0/share/dict/ooo"
+#define HOME getenv("HOME")
+#define DICBASENAME ".hunspell_"
+#define LOGFILE "/@unixroot/var/log/hunspell.log"
+#define DIRSEPCH '/'
+#define DIRSEP "/"
+#define PATHSEP ";"
+
+#else
+
 #define LIBDIR                \
   "/usr/share/hunspell:"      \
   "/usr/share/myspell:"       \
@@ -144,6 +169,8 @@
 #define DIRSEPCH '/'
 #define DIRSEP "/"
 #define PATHSEP ":"
+#endif
+
 #endif
 
 #ifdef HAVE_ICONV
