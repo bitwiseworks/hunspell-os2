@@ -39,6 +39,8 @@
 /Makefile.in
 /src/**/Makefile.in
 /docs/**/Makefile.in
+/man/Makefile.in
+/man/hu/Makefile.in
 /m4/**/Makefile.in
 /tests/**/Makefile.in
 
