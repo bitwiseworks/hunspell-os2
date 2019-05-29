@@ -15,7 +15,7 @@ before_install:
 
 install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      brew install gettext cppunit;
+      brew install gettext;
       brew link gettext --force;
     fi
 # Don't use real gcc on OS X, problems arise when
@@ -30,6 +30,10 @@ script:
   - autoreconf -i && ./configure && make && make check
 #  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then autoreconf -i -I /usr/local/share/aclocal && ./configure && make && make check; fi
 # might be needed for future
+
+after_failure:
+  - cat tests/test-suite.log
+
 addons:
   apt:
     sources:
@@ -40,6 +44,3 @@ addons:
     - autopoint
     - gcc-5
     - g++-5
-    - libcppunit-dev
-    - libboost-locale-dev
-    - libboost-system-dev
